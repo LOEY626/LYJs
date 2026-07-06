@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html><html lang="zh-CN"><head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+ <title>Loey 的数字路书 - 重庆北上兰州</title>
+ <link rel="manifest" href="manifest.json">
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin>
+ <link rel="stylesheet" href="style.css">
+ </head><body>
+ <div class="app-layout">
+ <!-- ===== SIDEBAR ===== -->
+ <aside class="sidebar" id="sidebar">
+   <div class="sidebar-brand">
+     <div class="brand-title">Loey's Routebook</div>
+     <div class="brand-sub">NORTHBOUND EXPEDITION</div>
+   </div>
+   <nav class="sidebar-nav">
+     <a class="nav-link active" href="#home"><span class="nav-icon">🏔️</span>Home</a>
+     <a class="nav-link" href="#mapSection"><span class="nav-icon">🗺️</span>Map</a>
+     <a class="nav-link" href="#route"><span class="nav-icon">📋</span>Days</a>
+     <a class="nav-link" href="#progress"><span class="nav-icon">📈</span>Progress</a>
+     <a class="nav-link" href="#safety"><span class="nav-icon">🛡️</span>Safety</a>
+     <a class="nav-link" href="#gear"><span class="nav-icon">🏰</span>Pack List</a>
+     <a class="nav-link" href="#photo"><span class="nav-icon">📷</span>Field Record</a>
+     <a class="nav-link" href="#summary"><span class="nav-icon">ℹ️</span>About</a>
+   </nav>
+ </aside>
+ 
+ <!-- ===== MAIN CONTENT ===== -->
+ <main class="main-content">
+ <div class="container" id="top">
+ 
+ <!-- ===== HERO ===== -->
+ <section id="home" class="hero-section">
+   <div class="hero-cover-bg" style="background-image:url('assets/cover-bg.jpg')"></div>
+  <div class="hero-bg" style="background-image:url('assets/hero-northbound.jpg')"></div>
+   <div class="hero-overlay"></div>
+   <div class="hero-content">
+     <div class="hero-badge"><span class="dot"></span>ACTIVE ROUTE / NORTHBOUND</div>
+     <p class="route-dir">重庆 → 四川 → 甘肃 → 兰州</p>
+     <h1>Loey’s<br>Digital Routebook</h1>
+     <p class="subtitle">NORTHBOUND EXPEDITION</p>
+     <div class="core-sentence">你可以做到！！<br>You can do it!!</div>
+     <p class="description">这是一次从重庆北碚出发，经过重庆、四川、甘肃，最终到达兰州七里河区的个人北上徒步挑战。路线以徒步为核心，中间穿插公共交通接驳，并以安全、住宿、补给、天气和身体状态作为每日判断依据。</p>
+     <div class="hero-stats" id="heroStats"></div>
+     <div class="status-tags" id="statusTags"></div>
+     <div class="hero-buttons">
+       <a href="#route" class="btn">查看路线</a>
+       <a href="#mapSection" class="btn">打开地图</a>
+       <a href="#safety" class="btn btn-outline">安全检查</a>
+       <a href="#gear" class="btn btn-outline">装备清单</a>
+     </div>
+   </div>
+   <div class="scroll-hint"><span>向下滚动</span><div class="arrow"></div></div>
+ </section>
+ 
+ <!-- ===== ROUTE OVERVIEW ===== -->
+<section id="overview" class="section">
+   <div class="overview-bg" style="background-image:url('assets/overview-bg.jpg')"></div>
+  <div class="section-header">
+     <div class="icon">📍</div>
+     <h2>路线总览</h2>
+     <span class="sub">Route Overview</span>
+   </div>
+   <div class="stats-grid" id="overviewStats"></div>
+   <div style="text-align:center;font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:20px">
+     <strong>路线节点：</strong> 北碚 → 合川 → 潼南 → 广元 → 剑门关 → 梓潼 → 合作 → 和政 → 临夏 → 兰州七里河
+   </div>
+ </section>
+ 
+ <!-- ===== MAP ===== -->
+ <section id="mapSection" class="section">
+   <div class="section-header">
+     <div class="icon">🗺️</div>
+     <h2>交互式地图</h2>
+     <span class="sub">Interactive Map</span>
+   </div>
+   <div class="map-section" id="mapWrapper">
+     <div id="map"></div>
+     <div class="map-fallback">地图组件加载失败，请检查网络连接。</div>
+   </div>
+   <p class="map-note">具体导航以当天高德/百度/Apple Maps/Google Maps实时路线为准，本数字路书只作为出发前规划参考。</p>
+ </section>
+ 
+ <!-- ===== DAILY ITINERARY ===== -->
+ <section id="route" class="section">
+   <div class="section-header">
+     <div class="icon">📋</div>
+     <h2>每日行程</h2>
+     <span class="sub">Daily Itinerary</span>
+   </div>
+   <div class="day-cards" id="dayCards"></div>
+ </section>
+ 
+ <!-- ===== PROGRESS ===== -->
+ <section id="progress" class="section">
+   <div class="section-header">
+     <div class="icon">📈</div>
+     <h2>徒步进度</h2>
+     <span class="sub">Progress Tracker</span>
+   </div>
+   <div class="progress-card" id="progressSection">
+     <div class="progress-stats" id="progressStats"></div>
+     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+     <div class="progress-label" id="progressLabel">已完成 0 / 14 天 (0%)</div>
+   </div>
+ </section>
+ 
+ <!-- ===== ELEVATION ===== -->
+ <section id="elevation" class="section">
+   <div class="section-header">
+     <div class="icon">⛰️</div>
+     <h2>海拔变化曲线</h2>
+     <span class="sub">Elevation Profile</span>
+   </div>
+   <div class="chart-card chart-wrapper" id="chartWrapper">
+     <canvas id="elevationChart"></canvas>
+     <div class="chart-fallback">图表组件加载失败，以下为文字版数据：<br><span id="chartTextData"></span></div>
+   </div>
+ </section>
+ 
+ <!-- ===== WEATHER ===== -->
+ <section id="weather" class="section">
+   <div class="section-header">
+     <div class="icon">🌤️</div>
+     <h2>每日天气</h2>
+     <span class="sub">Weather</span>
+   </div>
+   <div class="weather-grid" id="weatherGrid"></div>
+   <p class="weather-note">出发前请务必重新确认天气。以下为占位数据，出发前需用天气App重新确认。</p>
+ </section>
+ 
+ <!-- ===== SAFETY ===== -->
+ <section id="safety" class="section">
+   <div class="section-header">
+     <div class="icon">🛡️</div>
+     <h2>安全检查系统</h2>
+     <span class="sub">Safety Check</span>
+   </div>
+   <div class="safety-grid" id="safetyGrid"></div>
+   <div id="safetyStatus" class="safety-ready not-ready">⚠ NOT READY</div>
+ </section>
+ 
+ <!-- ===== GEAR ===== -->
+ <section id="gear" class="section">
+   <div class="section-header">
+     <div class="icon">🏰</div>
+     <h2>装备与路餐</h2>
+     <span class="sub">Gear &amp; Food</span>
+   </div>
+   <div class="gear-grid" id="gearGrid"></div>
+ </section>
+ 
+ <!-- ===== FIELD RECORD ===== -->
+ <section id="photo" class="section">
+   <div class="section-header">
+     <div class="icon">📷</div>
+     <h2>摄影记录</h2>
+     <span class="sub">Field Record</span>
+   </div>
+   <div class="photo-card-wrap">
+     <div class="photo-devices" id="fieldDevices"></div>
+     <hr style="border:none;border-top:1px solid var(--glass-border);margin:14px 0">
+     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+       <label style="font-size:12px;color:var(--text-muted)">选择 Day:</label>
+       <select id="fieldDay" style="padding:6px 10px;border-radius:6px;border:1px solid var(--glass-border);font-size:12px;background:var(--bg-card);color:var(--text-primary);font-family:inherit">
+         <script>for(var i=1;i<=14;i++)document.write('<option value="'+i+'">Day '+i+'</option>');</script>
+       </select>
+     </div>
+     <div class="photo-field-record">
+       <div class="photo-field-row"><label>拍摄点</label><input type="text" id="f_point" placeholder="记录当前拍摄地点"></div>
+       <div class="photo-field-row"><label>照片笔记</label><textarea id="f_photo" placeholder="照片内容、构图思考..."></textarea></div>
+       <div class="photo-field-row"><label>视频笔记</label><textarea id="f_video" placeholder="视频内容、运镜思路..."></textarea></div>
+       <div class="photo-field-row"><label>无人机</label><input type="text" id="f_drone" placeholder="是否可用 / 是否适合飞行"></div>
+       <div class="photo-field-row"><label>GPS坐标</label><input type="text" id="f_coords" placeholder="纬度, 经度"></div>
+       <div class="photo-field-row"><label>天气/心情</label><textarea id="f_mood" placeholder="天气状况、心情记录..."></textarea></div>
+     </div>
+     <hr style="border:none;border-top:1px solid var(--glass-border);margin:14px 0">
+     <h3 style="font-size:14px;font-weight:600;color:var(--metal-blue-500);margin-bottom:10px">照片库</h3>
+     <div class="photo-gallery-grid" id="photoGalleryGrid"></div>
+     <div class="photo-empty-state" id="photoEmpty" style="display:block">
+       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8A96A8" stroke-width="1.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+       <p>暂无照片记录</p>
+     </div>
+     <div class="photo-add-btn-area">
+       <button class="btn btn-sm" id="photoAddBtn">+ 添加照片</button>
+       <input type="file" id="photoFileInput" accept="image/*" multiple style="display:none">
+     </div>
+   </div>
+ </section>
+ 
+ <!-- ===== PHOTO VIEWER ===== -->
+ <div class="photo-viewer" id="photoViewer">
+   <button class="viewer-close" id="viewerClose">
+     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+   </button>
+   <img class="viewer-image" id="viewerImage" src="" alt="">
+   <div class="viewer-hint">点击关闭</div>
+ </div>
+ 
+ <!-- ===== SUMMARY ===== -->
+ <section id="summary" class="section">
+   <div class="summary-section">
+     <div class="summary-cover-bg" style="background-image:url('assets/cover-bg.jpg')"></div>
+    <div class="summary-bg" style="background-image:url('assets/final-lanzhou.jpg')"></div>
+     <div class="summary-content">
+       <h2>你可以做到！！</h2>
+       <p>这是 Loey 的个人北上徒步数字路书。每次出发前请确认天气、路线、住宿和身体状态。安全第一，享受旅程。</p>
+       <div style="margin-top:16px;font-size:13px;color:var(--text-muted)">
+         <div><strong>Route Completed / In Progress</strong></div>
+         <div style="margin-top:8px">350 KM Walking Plan | 14 Days | Safety First</div>
+         <div style="margin-top:4px">Every step counts.</div>
+       </div>
+     </div>
+   </div>
+</section>
+ 
+<div class="copyright">© 2026 刘奕静. All Rights Reserved.</div>
+ 
+</div>
+ </main>
+ </div>
+ 
+ <!-- ===== BOTTOM NAV ===== -->
+ <nav class="bottom-nav" id="bottomNav">
+   <button class="nav-item active" data-target="home"><span class="nav-icon">🏔️</span><span class="nav-label">首页</span></button>
+   <button class="nav-item" data-target="mapSection"><span class="nav-icon">🗺️</span><span class="nav-label">地图</span></button>
+   <button class="nav-item" data-target="route"><span class="nav-icon">📋</span><span class="nav-label">行程</span></button>
+   <button class="nav-item" data-target="safety"><span class="nav-icon">🛡️</span><span class="nav-label">安全</span></button>
+   <button class="nav-item" data-target="gear"><span class="nav-icon">🏰</span><span class="nav-label">装备</span></button>
+   <button class="nav-item" data-target="progress"><span class="nav-icon">📈</span><span class="nav-label">进度</span></button>
+ </nav>
+ 
+ <button id="backToTop" title="返回顶部">↑</button>
+ 
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" crossorigin></script>
+ <script src="script.js"></script>
+ </body></html>
+
+
+
+
