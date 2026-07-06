@@ -38,7 +38,7 @@
      var ic=d.type==='walking'?'\uD83D\uDEB6':d.type==='transit'?'\uD83D\uDE8C':'\uD83D\uDE8C+\uD83D\uDEB6';
      var tl=d.type==='walking'?'\u5F92\u6B65':d.type==='transit'?'\u4EA4\u901A\u63A5\u9A73':'\u4EA4\u901A+\u6536\u5B98';
      var done=dc['day'+d.day]||false;
-     return '<div class="day-card '+d.type+' fade-in"><div class="day-card-header"><div class="day-badge">'+d.day+'</div><span class="day-type">'+ic+' '+tl+'</span></div><div class="day-card-body"><div class="day-field"><span class="field-label">\u8D77\u70B9</span><span class="field-value">'+d.from+'</span></div><div class="day-field"><span class="field-label">\u7EC8\u70B9</span><span class="field-value">'+d.to+'</span></div><div class="day-field"><span class="field-label">\u7701\u4EFD</span><span class="field-value">'+d.province+'</span></div><div class="day-field"><span class="field-label">\u8DDD\u79BB</span><span class="field-value">'+d.distance+'</span></div><div class="day-field"><span class="field-label">\u722C\u5347</span><span class="field-value">'+d.ascent+'m</span></div><div class="day-field"><span class="field-label">\u9884\u8BA1\u65F6\u95F4</span><span class="field-value">'+d.hours+'</span></div><div class="day-field full"><span class="field-label">\u8DEF\u7EBF\u8BF4\u660E</span><span class="field-value">'+d.note+'</span></div><div class="day-field full"><span class="field-label">\u98CE\u9669\u63D0\u9192</span><span class="field-value" style="color:var(--warning)">'+d.risk+'</span></div><div class="day-field full"><span class="field-label">\u7F8E\u98DF\u63A8\u8350</span><span class="field-value">'+d.food+'</span></div></div><div class="day-card-actions"><a class="btn-sm" href="https://uri.amap.com/navigation?from='+(idx>0?ROUTE_DAYS[idx-1].lon:106.420)+','+(idx>0?ROUTE_DAYS[idx-1].lat:29.820)+'&to='+d.lon+','+d.lat+'&mode='+(d.type==='walking'?'walking':'transit')+'" target="_blank">\uD83D\uDCCD \u5BFC\u822A</a><a class="btn-sm" href="https://uri.amap.com/search?key=美食&location='+d.lon+','+d.lat+'" target="_blank">\uD83C\uDF5C \u7F8E\u98DF</a><a class="btn-sm" href="https://uri.amap.com/search?key=\u4F4F\u5BBF&location='+d.lon+','+d.lat+'" target="_blank">\uD83C\uDFE8 \u4F4F\u5BBF</a><a class="btn-sm" href="https://www.12306.cn" target="_blank">\uD83D\uDE84 \u8D2D\u7968</a><span class="btn-sm btn-warning">\u26A0\uFE0F '+d.risk.substring(0,16)+'\u2026</span></div><label class="day-check '+(done?'completed':'')+'"><input type="checkbox" data-day="'+d.day+'" '+(done?'checked':'')+'> Day '+d.day+' \u5DF2\u5B8C\u6210</label></div>';
+     return '<div class="day-card '+d.type+' fade-in"><div class="day-card-header"><div class="day-badge">'+d.day+'</div><span class="day-type">'+ic+' '+tl+'</span></div><div class="day-card-body"><div class="day-field"><span class="field-label">\u8D77\u70B9</span><span class="field-value">'+d.from+'</span></div><div class="day-field"><span class="field-label">\u7EC8\u70B9</span><span class="field-value">'+d.to+'</span></div><div class="day-field"><span class="field-label">\u7701\u4EFD</span><span class="field-value">'+d.province+'</span></div><div class="day-field"><span class="field-label">\u8DDD\u79BB</span><span class="field-value">'+d.distance+'</span></div><div class="day-field"><span class="field-label">\u722C\u5347</span><span class="field-value">'+d.ascent+'m</span></div><div class="day-field"><span class="field-label">\u9884\u8BA1\u65F6\u95F4</span><span class="field-value">'+d.hours+'</span></div><div class="day-field full"><span class="field-label">\u8DEF\u7EBF\u8BF4\u660E</span><span class="field-value">'+d.note+'</span></div><div class="day-field full"><span class="field-label">\u98CE\u9669\u63D0\u9192</span><span class="field-value" style="color:var(--warning)">'+d.risk+'</span></div><div class="day-field full"><span class="field-label">\u7F8E\u98DF\u63A8\u8350</span><span class="field-value">'+d.food+'</span></div></div><div class="day-card-actions"><a class="btn-sm" href="https://uri.amap.com/navigation?from='+(idx>0?ROUTE_DAYS[idx-1].lon:106.420)+','+(idx>0?ROUTE_DAYS[idx-1].lat:29.820)+'&to='+d.lon+','+d.lat+'&mode='+(d.type==='walking'?'walking':'transit')+'" target="_blank">\uD83D\uDCCD \u5BFC\u822A</a><a class="btn-sm" href="https://m.meituan.com/search?q=美食" target="_blank">\uD83C\uDF5C \u7F8E\u98DF</a><a class="btn-sm" href="https://m.dianping.com/search/keyword/0/0_住宿" target="_blank">\uD83C\uDFE8 \u4F4F\u5BBF</a><a class="btn-sm" href="https://www.12306.cn" target="_blank">\uD83D\uDE84 \u8D2D\u7968</a><span class="btn-sm btn-warning">\u26A0\uFE0F '+d.risk.substring(0,16)+'\u2026</span></div><label class="day-check '+(done?'completed':'')+'"><input type="checkbox" data-day="'+d.day+'" '+(done?'checked':'')+'> Day '+d.day+' \u5DF2\u5B8C\u6210</label></div>';
    }).join(''));
    qsa('.day-check input').forEach(function(cb){
      cb.addEventListener('change',function(){
@@ -281,19 +281,41 @@ function updateGearProgress(){
    render(grid,photos.map(function(p,i){
      return'<div class="photo-thumb" data-idx="'+i+'"><span class="thumb-index">'+(i+1)+'</span><img src="'+p.data+'" alt="" loading="lazy"></div>';
    }).join(''));
-   qsa('.photo-thumb').forEach(function(el){
-     el.addEventListener('click',function(){
-       var idx=parseInt(this.dataset.idx);
-       var photos=loadPhotos();
-       if(idx<0||idx>=photos.length)return;
-       var v=$('photoViewer'),img=$('viewerImage');
-       img.src=photos[idx].data;v.classList.add('active');
-       document.body.style.overflow='hidden';
-       function closeV(){v.classList.remove('active');document.body.style.overflow='';img.src='';}
-       $('viewerClose').onclick=closeV;
-       v.onclick=function(e){if(e.target===v)closeV();};
-     });
-   });
+    qsa('.photo-thumb').forEach(function(el){
+      var lpTimer,isLP=false;
+      function startLP(){
+        isLP=false;
+        var idx=parseInt(el.dataset.idx);
+        lpTimer=setTimeout(function(){
+          isLP=true;
+          if(confirm('\u8981\u5220\u9664\u8FD9\u5F20\u7167\u7247\u5417\uff1f')){
+            var photos=loadPhotos();
+            photos.splice(idx,1);
+            savePhotos(photos);
+            renderGallery();
+          }
+        },600);
+      }
+      function cancelLP(){clearTimeout(lpTimer);}
+      el.addEventListener('mousedown',startLP);
+      el.addEventListener('mouseup',cancelLP);
+      el.addEventListener('mouseleave',cancelLP);
+      el.addEventListener('touchstart',startLP);
+      el.addEventListener('touchend',cancelLP);
+      el.addEventListener('touchmove',cancelLP);
+      el.addEventListener('click',function(){
+        if(isLP){isLP=false;return;}
+        var idx=parseInt(this.dataset.idx);
+        var photos=loadPhotos();
+        if(idx<0||idx>=photos.length)return;
+        var v=$('photoViewer'),img=$('viewerImage');
+        img.src=photos[idx].data;v.classList.add('active');
+        document.body.style.overflow='hidden';
+        function closeV(){v.classList.remove('active');document.body.style.overflow='';img.src='';}
+        $('viewerClose').onclick=closeV;
+        v.onclick=function(e){if(e.target===v)closeV();};
+      });
+    });
  }
  function initPhotoUpload(){
    $('photoAddBtn').addEventListener('click',function(){$('photoFileInput').click();});
@@ -374,3 +396,6 @@ function updateGearProgress(){
    loadDayWeather().then(function(wd){if(wd.length)renderWeather(wd);});
    setTimeout(initChart,200);
  });
+
+
+

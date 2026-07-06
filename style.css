@@ -1,4 +1,4 @@
- :root{--bg-primary:#F5F7FA;--bg-secondary:#EEF2F6;--bg-card:#FFFFFF;--bg-card-alt:#F8FAFC;--divider:#D8DEE8;--text-primary:#0E1A2B;--text-secondary:#5F6B7A;--text-muted:#8A96A8;--metal-blue-500:#2F6FAE;--metal-blue-400:#3B7DBC;--metal-blue-300:#4D8FD1;--gray-blue-400:#AEBBCC;--gray-blue-300:#C9D3DF;--deep-blue-gray:#26384D;--warning:#B56A4A;--glass-bg:rgba(255,255,255,0.7);--glass-bg-strong:rgba(255,255,255,0.88);--glass-border:rgba(174,187,204,0.2);--glass-shadow:rgba(46,58,78,0.06);--glass-shadow-hover:rgba(46,58,78,0.12);--card-radius:16px;--card-radius-sm:12px;--sidebar-w:200px;--transition-base:0.35s cubic-bezier(0.22,1,0.36,1)}
+﻿ :root{--bg-primary:#F5F7FA;--bg-secondary:#EEF2F6;--bg-card:#FFFFFF;--bg-card-alt:#F8FAFC;--divider:#D8DEE8;--text-primary:#0E1A2B;--text-secondary:#5F6B7A;--text-muted:#8A96A8;--metal-blue-500:#2F6FAE;--metal-blue-400:#3B7DBC;--metal-blue-300:#4D8FD1;--gray-blue-400:#AEBBCC;--gray-blue-300:#C9D3DF;--deep-blue-gray:#26384D;--warning:#B56A4A;--glass-bg:rgba(255,255,255,0.7);--glass-bg-strong:rgba(255,255,255,0.88);--glass-border:rgba(174,187,204,0.2);--glass-shadow:rgba(46,58,78,0.06);--glass-shadow-hover:rgba(46,58,78,0.12);--card-radius:16px;--card-radius-sm:12px;--sidebar-w:200px;--transition-base:0.35s cubic-bezier(0.22,1,0.36,1)}
  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
  html{scroll-behavior:smooth}
  body{background:var(--bg-primary);color:var(--text-primary);font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei","Helvetica Neue",sans-serif;min-height:100vh;overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;display:flex}
@@ -173,7 +173,7 @@
  .hero-content h1{font-size:28px}.hero-content .core-sentence{font-size:24px}
  .hero-stats{gap:6px}.hero-stat{padding:6px 10px;min-width:60px}.hero-stat .num{font-size:14px}
  .hero-buttons{gap:6px}.hero-buttons .btn{padding:8px 16px;font-size:11px}
- #map{height:280px}.day-card-body{grid-template-columns:1fr}.day-card{padding:16px}
+ #map{height:350px;min-height:350px}.day-card-body{grid-template-columns:1fr}.day-card{padding:16px}
  .gear-grid{grid-template-columns:1fr}.safety-grid{grid-template-columns:1fr}
  .weather-grid{grid-template-columns:1fr 1fr}
  .section-header h2{font-size:16px}
